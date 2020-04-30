@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Password App</title>
+    <link rel="stylesheet" href="{% static 'password_app/css/bootstrap.css' %}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 2% !important;">
+      <a class="navbar-brand" href="{% url 'index' %}">DJANGO Password</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="{% url 'password_app:register' %}">Register <span class="sr-only">(current)</span></a>
+          {% if user.is_authenticated %}
+          <a class="nav-item nav-link" href="{% url 'logout' %}">Logout<span class="sr-only">(current)</span></a>
+          {% else %}
+          <a class="nav-item nav-link" href="{% url 'password_app:user_login' %}">Login<span class="sr-only">(current)</span></a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% block body_block %}
+      {% endblock %}
+    </div>
+
+  </body>
+  <script src="{% static 'password_app/js/jquery.js' %}" charset="utf-8"></script>
+  <script src="{% static 'password_app/js/bootstrap.js' %}" charset="utf-8"></script>
+</html>
